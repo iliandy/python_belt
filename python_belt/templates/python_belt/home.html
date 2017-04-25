@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Books Home</title>
+	{% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static '/python_belt/css/style1.css' %}">
+</head>
+<body>
+	<div class="container">
+		<h2>Welcome, {{ current_user.name }}.</h2>
+    <a href="/users/logout">Logout</a>
+
+	</div>
+</body>
+</html>
