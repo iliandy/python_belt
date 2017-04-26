@@ -86,9 +86,10 @@ class User(models.Model):
     email = models.CharField(max_length = 255)
     password = models.CharField(max_length = 255)
     birthdate = models.DateField()
+    friends = models.ManyToManyField("self")
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     objects = UserManager()
 
     def __str__(self):
-        return "Name: {}, Alias: {}, e-mail: {}, Password: {}, Birthdate: {}".format(self.name, self.alias, self.email, self.password, self.birthdate)
+        return "ID: {}, Name: {}, Alias: {}, e-mail: {}, Password: {}, Birthdate: {}".format(self.id, self.name, self.alias, self.email, self.password, self.birthdate, self.friends)

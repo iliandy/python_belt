@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Friends Home</title>
+	{% load staticfiles %}
+  <link rel="stylesheet" type="text/css" href="{% static '/python_belt/css/style1.css' %}">
+</head>
+<body>
+	<div class="container">
+		<h2>Welcome, {{ this_user.name }}.</h2>
+    <a href="/users/logout">Logout</a>
+		<h3>List of your friends:</h3>
+		{% if num_friends == 0 %}
+			<p>You don't have friends yet. It's a sad, sad world out there... </p>
+		{% endif %}
+
+		{% for friend in user_friends %}
+			<p>{{ friend.alias }} <a href="users/{{ friend.id }}">View Profile</a> | <a href="friends/remove/{{ friend.id }}">Remove as Friend</a></p>
+		{% endfor %}
+
+		<h3>Other Users not on your friends list:</h3>
+		{% for user in other_users %}
+			<a href="users/{{ user.id }}">{{ user.alias }}</a>
+			<form action="friends/add/{{ user.id }}" method="post">
+				{% csrf_token %}
+				<input type="submit" value="Add as Friend">
+			</form>
+		{% endfor %}
+
+	</div>
+</body>
+</html>
