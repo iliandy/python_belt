@@ -17,7 +17,7 @@ class UserManager(models.Manager):
         valid = True
         error_msgs = []
 
-        if len(post_data["name"]) < 2 or not post_data["name"].isalpha():
+        if len(post_data["name"]) < 2 or not re.search(r"^[A-Za-z \-]*$", post_data["name"]):
             valid = False
             error_msgs.append("Name must be at least 2 characters and only letters.")
         if len(post_data["alias"]) < 2:
